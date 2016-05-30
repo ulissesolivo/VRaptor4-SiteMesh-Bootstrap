@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/WEB-INF/decorators">
+  
+  <excludes>
+    <pattern>*nodecorator*</pattern>
+  </excludes>
+  
+  <decorator name="simples" page="simples.jsp">
+    <pattern>*/usuario/login</pattern>
+  </decorator>
+  
+  <decorator name="padrao" page="padrao.jsp">
+    <pattern>/*</pattern>
+  </decorator>
+
+</decorators>
