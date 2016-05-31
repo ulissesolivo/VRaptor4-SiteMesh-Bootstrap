@@ -27,7 +27,7 @@
           <span class="input-group-addon">Pesquisa</span>
           <input type="text" class="form-control" placeholder="Texto" id="texto" name="texto" value="${texto}" />
           <span class="input-group-btn">
-            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+            <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
           </span>
         </div>
       </form>
@@ -36,7 +36,7 @@
       <table class="table table-striped ">
         <thead>
           <tr>
-            <th colspan="2"><a href="<c:url value="/usuario/editar" />">Novo</a></th>
+            <th style="width: 20px;"><a href="<c:url value="/usuario/editar" />"><span itemid="${usuario.id}" class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></th>
             <th>Nome</th>
             <th>Login</th>
           </tr>
@@ -44,8 +44,7 @@
         <tbody>
           <c:forEach items="${usuarios}" var="usuario">
             <tr>
-              <td><a href="<c:url value="/usuario/editar/${usuario.id}" />">Editar</a></td>
-              <td><a href="<c:url value="/usuario/excluir/${usuario.id}" />">Excluir</a></td>
+              <td><a href="<c:url value="/usuario/editar/${usuario.id}" />"><span itemid="${usuario.id}" class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span></a></td>
               <td>${usuario.nome}</td>
               <td>${usuario.login}</td>
             </tr>

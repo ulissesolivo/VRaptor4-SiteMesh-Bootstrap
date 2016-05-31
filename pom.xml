@@ -7,10 +7,10 @@
 
     <groupId>com.ulisses</groupId>
     <artifactId>VRaptor4-SiteMesh-Bootstrap</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <packaging>war</packaging>
 
-    <name>VRaptor4 SiteMesh e Bootstrap</name>
+    <name>VRaptor 4 com SiteMesh e Bootstrap</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>

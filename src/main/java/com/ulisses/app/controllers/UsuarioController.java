@@ -89,7 +89,6 @@ public class UsuarioController {
         if (usuarioComponent.contar() > 0) {
           validator.add(new SimpleMessage("login.invalido", "Login e/ou senha inválidos!", Severity.ERROR));
         } else {
-          validator.validate(usuario, Usuario.class);
           session.setUsuario(usuarioComponent.salvar(usuario));
         }
       }

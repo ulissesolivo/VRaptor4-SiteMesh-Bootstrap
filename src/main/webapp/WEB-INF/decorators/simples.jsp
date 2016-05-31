@@ -38,7 +38,7 @@
     
   </head>
 
-  <body>
+  <body class="simples">
 
     <div class="container-fluid">
       <div class="row">

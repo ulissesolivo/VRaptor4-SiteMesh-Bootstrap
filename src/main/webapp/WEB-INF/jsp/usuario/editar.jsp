@@ -54,6 +54,7 @@
         <div class="form-group">
           <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
             <button type="button" class="btn btn-default" onclick="window.history.back();">Cancelar</button>
+            <a class="btn btn-danger" href="<c:url value="/usuario/excluir/${usuario.id}" />">Excluir</a>
             <button type="submit" class="btn btn-primary pull-right">Salvar</button>
           </div>
         </div>
