@@ -7,6 +7,7 @@ package com.ulisses.app;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 /**
@@ -16,6 +17,6 @@ import javax.persistence.criteria.Root;
  */
 public interface AppQuery<T> {
 
-  CriteriaQuery<T> builder(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder builder);
+  Predicate builder(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder builder);
 
 }

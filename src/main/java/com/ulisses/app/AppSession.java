@@ -1,4 +1,4 @@
- /*
+/*
  *  Created on : 21/04/2016, 22:36:48
  *  Author     : Ulisses Olivo
  *  E-mail     : ulissesolivo@gmail.com
@@ -17,7 +17,7 @@ import javax.inject.Named;
 @SessionScoped
 @Named(value = "session")
 public class AppSession implements Serializable {
-  
+
   private Usuario usuario;
 
   public Usuario getUsuario() {
@@ -27,7 +27,5 @@ public class AppSession implements Serializable {
   public void setUsuario(Usuario usuario) {
     this.usuario = usuario;
   }
-  
-  
   
 }

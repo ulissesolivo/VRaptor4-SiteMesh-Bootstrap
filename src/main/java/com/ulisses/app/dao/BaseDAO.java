@@ -5,7 +5,6 @@
  */
 package com.ulisses.app.dao;
 
-import com.ulisses.app.entities.Usuario;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
@@ -24,22 +23,12 @@ public abstract class BaseDAO<T> {
 
   @Inject
   private EntityManager em;
-  // protected CriteriaBuilder cb;
-  // protected CriteriaQuery<T> query;
-  // protected Root<T> root;
 
   @SuppressWarnings("unchecked")
   public BaseDAO() {
     Type t = getClass().getGenericSuperclass();
     ParameterizedType pt = (ParameterizedType) t;
     type = (Class<T>) pt.getActualTypeArguments()[0];
-    // if (em == null) {
-    // em =
-    // Persistence.createEntityManagerFactory("default").createEntityManager();
-    // }
-    // cb = em.getCriteriaBuilder();
-    // query = cb.createQuery(type);
-    // root = query.from(type);
   }
 
   protected EntityManager getEntityManager() {
@@ -128,10 +117,11 @@ public abstract class BaseDAO<T> {
   }
   
   public List<T> findAll(AppQuery appQuery) {
-    CriteriaBuilder builder = getCriteriaBuilder();
-    CriteriaQuery<T> query = builder.createQuery(type);
+    CriteriaBuilder cb = getCriteriaBuilder();
+    CriteriaQuery<T> query = cb.createQuery(type);
     Root<T> root = query.from(type);
-    return em.createQuery(appQuery.builder(root, query, builder)).getResultList();
+    query.where(appQuery.builder(root, query, cb));
+    return em.createQuery(query).getResultList();
   }
 
 }

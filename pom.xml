@@ -3,82 +3,84 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.ulisses</groupId>
-    <artifactId>VRaptor4-SiteMesh-Bootstrap</artifactId>
-    <version>0.0.2</version>
-    <packaging>war</packaging>
+  <groupId>com.ulisses</groupId>
+  <artifactId>VRaptor4-SiteMesh-Bootstrap</artifactId>
+  <version>0.0.2</version>
+  <packaging>war</packaging>
 
-    <name>VRaptor 4 com SiteMesh e Bootstrap</name>
+  <name>VRaptor 4 com SiteMesh e Bootstrap</name>
 
-    <properties>
-        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+  <properties>
+    <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.test.skip>true</maven.test.skip>
+  </properties>
     
   <dependencies>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-log4j12</artifactId>
-      <version>1.7.21</version>
-    </dependency>
-    <dependency>
-      <groupId>commons-codec</groupId>
-      <artifactId>commons-codec</artifactId>
-      <version>1.10</version>
-    </dependency>
-    <dependency>
-      <groupId>commons-collections</groupId>
-      <artifactId>commons-collections</artifactId>
-      <version>3.2.2</version>
-    </dependency>
+    <!-- VRaptor (Framework MVC) -->
     <dependency>
       <groupId>br.com.caelum</groupId>
       <artifactId>vraptor</artifactId>
       <version>4.2.0-RC4</version>
     </dependency>
-    <dependency>
-      <groupId>opensymphony</groupId>
-      <artifactId>sitemesh</artifactId>
-      <version>2.4.2</version>
-    </dependency>
+    <!-- O plugin VRaptor JPA -->
     <dependency>
       <groupId>br.com.caelum.vraptor</groupId>
       <artifactId>vraptor-jpa</artifactId>
       <version>4.0.5</version>
     </dependency>
+    <!-- Plugin de suporte para Java 8 -->
     <dependency>
       <groupId>br.com.caelum.vraptor</groupId>
       <artifactId>vraptor-java8</artifactId>
       <version>4.0.0.Final</version>
     </dependency>
+    <!-- Conversores de data java 8 
+    <dependency>
+      <groupId>br.com.caelum.vraptor</groupId>
+      <artifactId>vraptor-javatime</artifactId>
+      <version>4.1.0-RC2</version>
+    </dependency> -->
+    <!-- Soluções de i18n na view -->
+    <dependency>
+      <groupId>br.com.caelum.vraptor</groupId>
+      <artifactId>vraptor-i18n</artifactId>
+      <version>4.2.0-RC4</version>
+    </dependency>
+    <!-- Forma fácil de verificar as permissões de acesso das ações de seu controller -->
     <dependency>
       <groupId>br.com.caelum.vraptor</groupId>
       <artifactId>vraptor-brutauth</artifactId>
       <version>4.0.4</version>
     </dependency>
+    <!-- Servlet API -->
     <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-validator-cdi</artifactId>
-      <version>5.2.4.Final</version>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <!-- EL (Expression Language) -->
+    <dependency>
+      <groupId>javax.el</groupId>
+      <artifactId>el-api</artifactId>
+      <version>2.2</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-entitymanager</artifactId>
-      <version>5.1.0.Final</version>
+      <groupId>org.glassfish.web</groupId>
+      <artifactId>el-impl</artifactId>
+      <version>2.2</version>
     </dependency>
+    <!-- JSTL (JSP Standard Tag Library) -->        
     <dependency>
-      <groupId>org.javassist</groupId>
-      <artifactId>javassist</artifactId>
-      <version>3.20.0-GA</version>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
     </dependency>
-    <dependency>
-      <groupId>javax.inject</groupId>
-      <artifactId>javax.inject</artifactId>
-      <version>1</version>
-      <scope>compile</scope>
-    </dependency>
+    <!-- CDI (Especificação) com implementação Weld -->    
     <dependency>
       <groupId>org.jboss.weld.servlet</groupId>
       <artifactId>weld-servlet-core</artifactId>
@@ -90,26 +92,59 @@
       <version>2.3.4.Final</version>
     </dependency>
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>3.1.0</version>
+      <groupId>org.jboss.weld.se</groupId>
+      <artifactId>weld-se-core</artifactId>
+      <version>2.3.4.Final</version>
       <scope>provided</scope>
     </dependency>
+    <!-- JPA (Especificação) com implementação Hibernate -->
     <dependency>
-      <groupId>javax.servlet.jsp</groupId>
-      <artifactId>jsp-api</artifactId>
-      <version>2.2</version>
-      <scope>provided</scope>
-    </dependency>    
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>jstl</artifactId>
-      <version>1.2</version>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+      <version>5.1.0.Final</version>
     </dependency>
+    <!-- Bean Validation (Especificação) com implementação Hibernate-Validator -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator-cdi</artifactId>
+      <version>5.2.4.Final</version>
+    </dependency>
+    <!-- Drive do postgres -->
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
       <version>9.4-1205-jdbc42</version>
+    </dependency>
+    <!-- Javassist (JAVA programming ASSISTant) -->
+    <dependency>
+      <groupId>org.javassist</groupId>
+      <artifactId>javassist</artifactId>
+      <version>3.20.0-GA</version>
+    </dependency>
+    <!-- Apache Commons Codec -->
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+      <version>1.10</version>
+    </dependency>
+    <!-- The Java Collections Framework -->
+    <dependency>
+      <groupId>commons-collections</groupId>
+      <artifactId>commons-collections</artifactId>
+      <version>3.2.2</version>
+    </dependency>
+    <!-- Simple Logging Facade for Java -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.7.21</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.inject</groupId>
+      <artifactId>javax.inject</artifactId>
+      <version>1</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>javax</groupId>
@@ -117,7 +152,54 @@
       <version>7.0</version>
       <scope>provided</scope>
     </dependency>
+
+    <dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>2.2</version>
+      <scope>provided</scope>
+    </dependency>
+    <!-- Framework SiteMesh para construção do layout -->
+    <dependency>
+      <groupId>opensymphony</groupId>
+      <artifactId>sitemesh</artifactId>
+      <version>2.4.2</version>
+    </dependency>
+    <!-- JSON  -->    
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.7</version>
+    </dependency>
+    <!-- test -->
+    <dependency>
+      <groupId>org.eclipse.jdt</groupId>
+      <artifactId>core</artifactId>
+      <version>3.3.0-v_771</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>br.com.caelum.vraptor</groupId>
+      <artifactId>vraptor-test</artifactId>
+      <version>4.0.1-SNAPSHOT</version>
+      <scope>test</scope>
+    </dependency>
+    
   </dependencies>
+
+  <repositories>
+    <!-- temporariamente até ser disponibolizado no mvn pela caelum -->
+    <repository>
+      <id>mvn-repo-snapshot</id>
+      <url>https://raw.github.com/clairton/mvn-repo/snapshots</url>
+    </repository>
+  </repositories>
 
   <build>
     <plugins>

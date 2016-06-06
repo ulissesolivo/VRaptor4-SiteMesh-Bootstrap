@@ -15,7 +15,10 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import org.apache.commons.codec.digest.DigestUtils;
 import com.ulisses.app.AppQuery;
+import javax.persistence.criteria.Predicate;
+import javax.transaction.Transactional;
 
+@Transactional
 public class UsuarioComponent {
 
   @Inject
@@ -59,14 +62,11 @@ public class UsuarioComponent {
     }
     return false;
   }
-  
+
   public List<Usuario> buscar(String texto) {
-    AppQuery<Usuario> spec = new AppQuery<Usuario>() {
-      @Override
-      public CriteriaQuery builder(Root<Usuario> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
-        query.where(builder.like(builder.lower(root.get(Usuario_.login)), ("%" + texto + "%").toLowerCase()));
-        return query;
-      }
+    AppQuery<Usuario> spec = (Root<Usuario> root, CriteriaQuery<?> query, CriteriaBuilder cb) -> {
+      Predicate p = cb.like(cb.lower(root.get(Usuario_.login)), ("%" + texto + "%").toLowerCase());
+      return p;
     };
     return usuarioDAO.findAll(spec);
   }

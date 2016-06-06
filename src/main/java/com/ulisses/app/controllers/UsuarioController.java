@@ -63,8 +63,8 @@ public class UsuarioController {
     validator.validate(usuario);
     validator.onErrorForwardTo(this).editar(usuario);
     AppTry.exec(() -> usuarioComponent.salvar(usuario), validator);
-    validator.onErrorForwardTo(this).editar(usuario);
-    result.forwardTo(this).listar();
+    validator.onErrorForwardTo(MsgController.class).json(validator.getErrors());
+    result.forwardTo(MsgController.class).json("Usuário salvo com sucesso!");
   }
 
   @Get("excluir/{id}")
